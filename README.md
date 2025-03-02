@@ -1,40 +1,82 @@
-# Welcome to Remix!
+# BetterPes
 
-- 📖 [Remix docs](https://remix.run/docs)
+A modern study companion application built with Remix and React. BetterPes helps students organize their course materials, create custom reading lists, and manage their study materials effectively.
 
-## Development
+## Features
 
-Run the dev server:
+- 📚 Organize materials by semester and course
+- 📝 Create custom reading lists
+- 🌓 Dark/Light mode with system preference support
+- 📱 Responsive design for all devices
+- 📄 PDF viewer integration for course materials
 
-```shellscript
+## Tech Stack
+
+- [Remix](https://remix.run/) - Full stack web framework
+- [React](https://reactjs.org/) - UI library
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+- [Zustand](https://zustand-demo.pmnd.rs/) - State management
+- [Vite](https://vitejs.dev/) - Build tool
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 20.0.0
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```sh
+git clone https://github.com/yourusername/betterpes.git
+cd betterpes
+```
+
+2. Install dependencies:
+```sh
+npm install
+```
+
+### Development
+
+Run the development server:
+
+```sh
 npm run dev
 ```
 
-## Deployment
+The application will be available at `http://localhost:5173`.
 
-First, build your app for production:
+### Building for Production
 
+1. Build the application:
 ```sh
 npm run build
 ```
 
-Then run the app in production mode:
-
+2. Start the production server:
 ```sh
 npm start
 ```
 
-Now you'll need to pick a host to deploy it to.
+## Project Structure
 
-### DIY
+- `/app` - Application source code
+  - `/data` - Data models and static content
+  - `/routes` - Application routes and pages
+  - `/utils` - Utility functions and hooks
+- `/public` - Static assets
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+## Contributing
 
-Make sure to deploy the output of `npm run build`
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-- `build/server`
-- `build/client`
+## License
 
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+This project is open source and available under the [MIT License](LICENSE).
