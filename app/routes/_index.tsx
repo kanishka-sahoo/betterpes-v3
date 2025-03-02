@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "StudyApp - Your Study Companion" },
+    { title: "BetterPes - Your Study Companion" },
     { name: "description", content: "Organize your course materials and create custom reading lists" },
     { name: "color-scheme", content: "light dark" },
   ];

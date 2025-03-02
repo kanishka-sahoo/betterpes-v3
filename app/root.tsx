@@ -98,7 +98,7 @@ function AppContent() {
             <div className="flex">
               <div className="flex flex-shrink-0 items-center">
                 <Link to="/" className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
-                  StudyApp
+                  BetterPes
                 </Link>
               </div>
               <div className="ml-6 flex items-center space-x-4">
