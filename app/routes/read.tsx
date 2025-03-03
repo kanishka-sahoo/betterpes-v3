@@ -79,7 +79,7 @@ export default function Read() {
           <div className="space-y-1">
             {readingList.map((material) => (
               <div
-                key={material.id}
+                key={material.url}
                 className={`px-3 py-2 rounded cursor-pointer transition-colors flex items-center justify-between ${
                   material.url === selectedUrl 
                     ? 'bg-indigo-100 dark:bg-indigo-900 text-indigo-900 dark:text-indigo-100' 
@@ -91,18 +91,18 @@ export default function Read() {
               >
                 <div 
                   className="font-medium text-sm truncate max-w-[85%]" 
-                  title={material.title} // Tooltip showing full title on hover
+                  title={material.title}
                 >
                   {material.title}
                 </div>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    removeFromReadingList(material.id);
+                    removeFromReadingList(material.url);
                     if (readingList.length === 1) {
                       setSelectedUrl('');
                     } else if (material.url === selectedUrl) {
-                      const nextMaterial = readingList.find(m => m.id !== material.id);
+                      const nextMaterial = readingList.find(m => m.url !== material.url);
                       if (nextMaterial) {
                         setSelectedUrl(nextMaterial.url);
                       }
