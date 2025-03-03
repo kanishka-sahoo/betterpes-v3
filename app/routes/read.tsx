@@ -67,11 +67,11 @@ export default function Read() {
               </svg>
             </button>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {readingList.map((material) => (
               <div
                 key={material.id}
-                className={`p-3 rounded cursor-pointer transition-colors ${
+                className={`px-3 py-2 rounded cursor-pointer transition-colors flex items-center justify-between ${
                   material.url === selectedUrl 
                     ? 'bg-indigo-100 dark:bg-indigo-900 text-indigo-900 dark:text-indigo-100' 
                     : 'bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600'
@@ -80,8 +80,12 @@ export default function Read() {
                   setSelectedUrl(material.url);
                 }}
               >
-                <div className="font-medium text-sm sm:text-base">{material.title}</div>
-                <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">{material.type}</div>
+                <div 
+                  className="font-medium text-sm truncate max-w-[85%]" 
+                  title={material.title} // Tooltip showing full title on hover
+                >
+                  {material.title}
+                </div>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -95,9 +99,12 @@ export default function Read() {
                       }
                     }
                   }}
-                  className="mt-2 text-red-600 dark:text-red-400 text-xs sm:text-sm hover:text-red-800 dark:hover:text-red-300"
+                  className="text-gray-400 hover:text-red-500 dark:text-gray-500 dark:hover:text-red-400 transition-colors"
+                  title="Remove from reading list"
                 >
-                  Remove
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </button>
               </div>
             ))}
