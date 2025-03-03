@@ -109,9 +109,9 @@ function ThemeButton() {
 
 function AppContent() {
   const { theme } = useTheme();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   useEffect(() => {
-    // Update theme-color meta tag when theme changes
     const themeColor = theme === 'dark' ? '#1f2937' : '#4f46e5';
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor);
   }, [theme]);
@@ -121,13 +121,14 @@ function AppContent() {
       <nav className="bg-white dark:bg-gray-800 shadow">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 justify-between items-center">
-            <div className="flex">
-              <div className="flex flex-shrink-0 items-center">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
                 <Link to="/" className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
                   BetterPes
                 </Link>
               </div>
-              <div className="ml-6 flex items-center space-x-4">
+              {/* Desktop Navigation */}
+              <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
                 <Link
                   to="/materials"
                   className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md"
@@ -148,7 +149,47 @@ function AppContent() {
                 </Link>
               </div>
             </div>
-            <ThemeButton />
+
+            <div className="flex items-center space-x-4">
+              <ThemeButton />
+              {/* Mobile menu button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="sm:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                aria-label="Toggle mobile menu"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} sm:hidden pb-3`}>
+            <div className="space-y-1">
+              <Link
+                to="/materials"
+                className="block text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Materials
+              </Link>
+              <Link
+                to="/read"
+                className="block text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Read
+              </Link>
+              <Link
+                to="/about"
+                className="block text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
