@@ -66,12 +66,19 @@ export default defineConfig({
               }
             }
           }
-        ]
+        ],
+        navigateFallback: '/',
       },
       devOptions: {
         enabled: true,
-        type: 'module'
-      }
+        type: 'module',
+        /* Force service worker to be available in development */
+        navigateFallback: '/',
+      },
+      /* Use generateSW strategy as it's more compatible with Remix */
+      strategies: 'generateSW',
+      /* Specify the outDir to ensure service worker is created in the right location */
+      outDir: 'public'
     })
   ],
 });
