@@ -8,19 +8,14 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 import { ThemeProvider, useTheme } from "~/utils/theme";
+import { PWARegister } from "~/utils/pwa-utils";
 import "./tailwind.css";
 import { useEffect, useRef, useState } from "react";
 
 export const links: LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    rel: "manifest",
+    href: "/manifest.webmanifest",
   },
 ];
 
@@ -90,6 +85,14 @@ function ThemeButton() {
 }
 
 function AppContent() {
+  const { theme } = useTheme();
+  
+  useEffect(() => {
+    // Update theme-color meta tag when theme changes
+    const themeColor = theme === 'dark' ? '#1f2937' : '#4f46e5';
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColor);
+  }, [theme]);
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <nav className="bg-white dark:bg-gray-800 shadow">
@@ -114,6 +117,12 @@ function AppContent() {
                 >
                   Read
                 </Link>
+                <Link
+                  to="/about"
+                  className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 rounded-md"
+                >
+                  About
+                </Link>
               </div>
             </div>
             <ThemeButton />
@@ -130,8 +139,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1" />
         <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#4f46e5" />
+        <meta name="description" content="A study material management application" />
         {/* Blocking script to prevent flash and handle initial theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -172,6 +183,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <PWARegister />
       </body>
     </html>
   );

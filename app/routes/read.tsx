@@ -78,7 +78,6 @@ export default function Read() {
                 }`}
                 onClick={() => {
                   setSelectedUrl(material.url);
-                  setIsSidebarOpen(false);
                 }}
               >
                 <div className="font-medium text-sm sm:text-base">{material.title}</div>
