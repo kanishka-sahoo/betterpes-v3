@@ -1,3 +1,13 @@
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "BetterPes | About" },
+    { name: "description", content: "Organize your course materials and create custom reading lists" },
+    { name: "color-scheme", content: "light dark" },
+  ];
+};
+
 export default function About() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

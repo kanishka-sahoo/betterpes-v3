@@ -4,10 +4,19 @@ import { json } from '@remix-run/node';
 import { useStudyStore } from '~/utils/store';
 import type { Material } from '~/utils/store';
 import { availableSemesters } from '~/data/courses';
+import type { MetaFunction } from "@remix-run/node";
 
 export async function loader() {
   return json({ semesters: availableSemesters });
 }
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "BetterPes | Material" },
+    { name: "description", content: "Organize your course materials and create custom reading lists" },
+    { name: "color-scheme", content: "light dark" },
+  ];
+};
 
 export default function Materials() {
   const { semesters: initialSemesters } = useLoaderData<typeof loader>();

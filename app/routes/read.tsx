@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useStudyStore } from '~/utils/store';
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "BetterPes | Read" },
+    { name: "description", content: "Organize your course materials and create custom reading lists" },
+    { name: "color-scheme", content: "light dark" },
+  ];
+};
 
 export default function Read() {
   const { readingList, removeFromReadingList } = useStudyStore();
