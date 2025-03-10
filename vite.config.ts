@@ -51,6 +51,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,pdf}'],
+        mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -68,12 +69,13 @@ export default defineConfig({
           }
         ],
         navigateFallback: '/',
+        sourcemap: true
       },
       devOptions: {
         enabled: true,
         type: 'module',
-        /* Force service worker to be available in development */
         navigateFallback: '/',
+        suppressWarnings: true  // Add this to suppress development warnings
       },
       /* Use generateSW strategy as it's more compatible with Remix */
       strategies: 'generateSW',
