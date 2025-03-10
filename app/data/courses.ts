@@ -28,34 +28,64 @@ export const availableSemesters: Semester[] = [
     courses: [
       {
         code: "CS351A",
-        name: "Database Management Systems I",
+        name: "Database Management Systems",
         units: [
           {
-            name: "Introduction to Database Management",
+            name: "Unit 1: Introduction to Database Management",
             materials: [
               {
                 type: "slides",
-                title: "Introduction to DBMS",
+                title: "Unit 1 Slides",
                 url: "https://drive.google.com/file/d/1QAQ-hr3BCGGW2Pd5GupyYJcQDhWuTzel/view"
               },
               {
                 type: "notes",
-                title: "Database Fundamentals",
+                title: "Unit 1 Notes",
                 url: "https://drive.google.com/file/d/abcdef1234567890/view?usp=sharing"
               }
             ]
           },
           {
-            name: "Relational Model and Database Design",
+            name: "Unit 2: Relational Model and Database Design",
             materials: [
               {
                 type: "slides",
-                title: "Relational Model Overview",
+                title: "Unit 2 Slides",
                 url: "https://drive.google.com/file/d/relational-model/view"
               },
               {
                 type: "notes",
-                title: "Database Design Principles",
+                title: "Unit 2 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
+              }
+            ]
+          },
+          {
+            name: "Unit 3: Advanced Design Concepts and Implementation",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 3 Slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 3 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
+              }
+            ]
+          },
+          {
+            name: "Unit 4: Advanced Databases",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 4 slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 4 Notes",
                 url: "https://drive.google.com/file/d/db-design/view"
               }
             ]
@@ -64,42 +94,183 @@ export const availableSemesters: Semester[] = [
       },
       {
         code: "CS352A",
-        name: "Database Management Systems II",
+        name: "Machine Learning",
         units: [
           {
-            name: "Advanced Database Concepts",
+            name: "Unit 1: Introduction to Database Management",
             materials: [
               {
                 type: "slides",
-                title: "Transaction Management",
-                url: "https://drive.google.com/file/d/transactions/view"
+                title: "Unit 1 Slides",
+                url: "https://drive.google.com/file/d/1QAQ-hr3BCGGW2Pd5GupyYJcQDhWuTzel/view"
               },
               {
                 type: "notes",
-                title: "Concurrency Control",
-                url: "https://drive.google.com/file/d/concurrency/view"
+                title: "Unit 1 Notes",
+                url: "https://drive.google.com/file/d/abcdef1234567890/view?usp=sharing"
+              }
+            ]
+          },
+          {
+            name: "Unit 2: Relational Model and Database Design",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 2 Slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 2 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
+              }
+            ]
+          },
+          {
+            name: "Unit 3: Advanced Design Concepts and Implementation",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 3 Slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 3 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
+              }
+            ]
+          },
+          {
+            name: "Unit 4: Advanced Databases",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 4 slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 4 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
               }
             ]
           }
         ]
-      }
+      },
+      {
+        code: "CS341A",
+        name: "Software Engineering",
+        units: [
+          {
+            name: "Unit 1: Introduction to Database Management",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 1 Slides",
+                url: "https://drive.google.com/file/d/1QAQ-hr3BCGGW2Pd5GupyYJcQDhWuTzel/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 1 Notes",
+                url: "https://drive.google.com/file/d/abcdef1234567890/view?usp=sharing"
+              }
+            ]
+          },
+          {
+            name: "Unit 2: Relational Model and Database Design",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 2 Slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 2 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
+              }
+            ]
+          },
+          {
+            name: "Unit 3: Advanced Design Concepts and Implementation",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 3 Slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 3 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
+              }
+            ]
+          },
+          {
+            name: "Unit 4: Advanced Databases",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 4 slides",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Unit 4 Notes",
+                url: "https://drive.google.com/file/d/db-design/view"
+              }
+            ]
+          }
+        ]
+      },
     ]
   },
   {
     name: "Semester 6",
     courses: [
       {
-        code: "CS201",
-        name: "Data Structures and Algorithms",
+        code: "CS351B",
+        name: "Cloud Computing",
         units: [
           {
-            name: "Advanced Data Structures",
+            name: "Unit 1: Cloud Programming Models",
             materials: [
               {
                 type: "slides",
-                title: "Trees and Graphs",
-                url: "https://drive.google.com/file/d/trees123/view?usp=sharing"
+                title: "Unit 1 Slides",
+                url: "https://drive.google.com/file/d/1wt7LjWL05fH54gUGZXk3z1W_bcLXCr2D/view?usp=sharing"
               }
+            ]
+          },
+          {
+            name: "Unit 2: Virtualization",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 2 Slides",
+                url: "https://drive.google.com/file/d/103SGEy4HNm3ZoJGiadzuKZIyrKhGLZ-k/view?usp=sharing"
+              },
+            ]
+          },
+          {
+            name: "Unit 3: Distributed Storage",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 3 Slides",
+                url: "https://drive.google.com/file/d/1ZZ6pF9v69YktpxWwIuk0m-op94HT4iLX/view?usp=sharing"
+              },
+            ]
+          },
+          {
+            name: "Unit 4: Cloud Controller, Performance, Scalability and Security",
+            materials: [
+              {
+                type: "slides",
+                title: "Unit 4 Slides",
+                url: "https://drive.google.com/file/d/180K0ad_x5uT47McQ7GOIhxk9Fj0H2X5i/view?usp=sharing"
+              },
             ]
           }
         ]
