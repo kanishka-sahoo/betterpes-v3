@@ -1,80 +1,83 @@
 type MaterialType = 'slides' | 'notes';
 
 interface Material {
-  id: string;
   type: MaterialType;
   title: string;
   url: string;
-  courseId: string;
-  unitId: string;
 }
 
 interface Unit {
-  id: string;
   name: string;
   materials: Material[];
 }
 
 interface Course {
-  id: string;
+  code: string;
   name: string;
   units: Unit[];
 }
 
 interface Semester {
-  id: string;
   name: string;
   courses: Course[];
 }
 
 export const availableSemesters: Semester[] = [
   {
-    id: "sem5",
     name: "Semester 5",
     courses: [
       {
-        id: "cs101",
-        name: "Introduction to Computer Science",
+        code: "CS351A",
+        name: "Database Management Systems I",
         units: [
           {
-            id: "u1",
-            name: "Programming Basics",
+            name: "Introduction to Database Management",
             materials: [
               {
-                id: "m1",
                 type: "slides",
-                title: "Introduction to Programming",
-                url: "https://drive.google.com/file/d/1QAQ-hr3BCGGW2Pd5GupyYJcQDhWuTzel/view",
-                courseId: "cs101",
-                unitId: "u1"
+                title: "Introduction to DBMS",
+                url: "https://drive.google.com/file/d/1QAQ-hr3BCGGW2Pd5GupyYJcQDhWuTzel/view"
               },
               {
-                id: "m2",
                 type: "notes",
-                title: "Programming Fundamentals",
-                url: "https://drive.google.com/file/d/abcdef1234567890/view?usp=sharing",
-                courseId: "cs101",
-                unitId: "u1"
+                title: "Database Fundamentals",
+                url: "https://drive.google.com/file/d/abcdef1234567890/view?usp=sharing"
+              }
+            ]
+          },
+          {
+            name: "Relational Model and Database Design",
+            materials: [
+              {
+                type: "slides",
+                title: "Relational Model Overview",
+                url: "https://drive.google.com/file/d/relational-model/view"
+              },
+              {
+                type: "notes",
+                title: "Database Design Principles",
+                url: "https://drive.google.com/file/d/db-design/view"
               }
             ]
           }
         ]
       },
       {
-        id: "math201",
-        name: "Linear Algebra",
+        code: "CS352A",
+        name: "Database Management Systems II",
         units: [
           {
-            id: "u1",
-            name: "Matrices",
+            name: "Advanced Database Concepts",
             materials: [
               {
-                id: "m5",
                 type: "slides",
-                title: "Introduction to Matrices",
-                url: "https://drive.google.com/file/d/matrix123/view?usp=sharing",
-                courseId: "math201",
-                unitId: "u1"
+                title: "Transaction Management",
+                url: "https://drive.google.com/file/d/transactions/view"
+              },
+              {
+                type: "notes",
+                title: "Concurrency Control",
+                url: "https://drive.google.com/file/d/concurrency/view"
               }
             ]
           }
@@ -83,44 +86,35 @@ export const availableSemesters: Semester[] = [
     ]
   },
   {
-    id: "sem6",
     name: "Semester 6",
     courses: [
       {
-        id: "cs201",
-        name: "Data Structures",
+        code: "CS201",
+        name: "Data Structures and Algorithms",
         units: [
           {
-            id: "u1",
             name: "Advanced Data Structures",
             materials: [
               {
-                id: "m6",
                 type: "slides",
                 title: "Trees and Graphs",
-                url: "https://drive.google.com/file/d/trees123/view?usp=sharing",
-                courseId: "cs201",
-                unitId: "u1"
+                url: "https://drive.google.com/file/d/trees123/view?usp=sharing"
               }
             ]
           }
         ]
       },
       {
-        id: "phys101",
+        code: "PH101",
         name: "Physics I",
         units: [
           {
-            id: "u1",
             name: "Mechanics",
             materials: [
               {
-                id: "m7",
                 type: "notes",
                 title: "Newton's Laws",
-                url: "https://drive.google.com/file/d/physics123/view?usp=sharing",
-                courseId: "phys101",
-                unitId: "u1"
+                url: "https://drive.google.com/file/d/physics123/view?usp=sharing"
               }
             ]
           }
@@ -129,52 +123,24 @@ export const availableSemesters: Semester[] = [
     ]
   },
   {
-    id: "sem7",
     name: "Semester 7",
     courses: [
       {
-        id: "cs301",
+        code: "CS301",
         name: "Machine Learning",
         units: [
           {
-            id: "u1",
             name: "Foundations of ML",
             materials: [
               {
-                id: "m8",
                 type: "slides",
                 title: "Introduction to Machine Learning",
-                url: "https://drive.google.com/file/d/ml-intro123/view?usp=sharing",
-                courseId: "cs301",
-                unitId: "u1"
+                url: "https://drive.google.com/file/d/ml-intro123/view?usp=sharing"
               },
               {
-                id: "m9",
                 type: "notes",
                 title: "ML Algorithms Overview",
-                url: "https://drive.google.com/file/d/ml-algo123/view?usp=sharing",
-                courseId: "cs301",
-                unitId: "u1"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id: "cs302",
-        name: "Cloud Computing",
-        units: [
-          {
-            id: "u1",
-            name: "Cloud Fundamentals",
-            materials: [
-              {
-                id: "m10",
-                type: "slides",
-                title: "Introduction to Cloud Services",
-                url: "https://drive.google.com/file/d/cloud-intro123/view?usp=sharing",
-                courseId: "cs302",
-                unitId: "u1"
+                url: "https://drive.google.com/file/d/ml-algo123/view?usp=sharing"
               }
             ]
           }
@@ -183,44 +149,35 @@ export const availableSemesters: Semester[] = [
     ]
   },
   {
-    id: "sem8",
     name: "Semester 8",
     courses: [
       {
-        id: "cs401",
+        code: "CS401",
         name: "Artificial Intelligence",
         units: [
           {
-            id: "u1",
             name: "AI Basics",
             materials: [
               {
-                id: "m11",
                 type: "slides",
                 title: "Introduction to AI",
-                url: "https://drive.google.com/file/d/ai-intro123/view?usp=sharing",
-                courseId: "cs401",
-                unitId: "u1"
+                url: "https://drive.google.com/file/d/ai-intro123/view?usp=sharing"
               }
             ]
           }
         ]
       },
       {
-        id: "cs402",
+        code: "CS402",
         name: "Blockchain Technology",
         units: [
           {
-            id: "u1",
             name: "Blockchain Fundamentals",
             materials: [
               {
-                id: "m12",
                 type: "notes",
                 title: "Introduction to Blockchain",
-                url: "https://drive.google.com/file/d/blockchain123/view?usp=sharing",
-                courseId: "cs402",
-                unitId: "u1"
+                url: "https://drive.google.com/file/d/blockchain123/view?usp=sharing"
               }
             ]
           }

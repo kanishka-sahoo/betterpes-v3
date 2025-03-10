@@ -22,8 +22,8 @@ export default function Materials() {
   const { semesters: initialSemesters } = useLoaderData<typeof loader>();
   const { readingList, semesters, setSemesters, addToReadingList, removeFromReadingList } = useStudyStore();
   const [isClient, setIsClient] = useState(false);
-  const [selectedSemesterId, setSelectedSemesterId] = useState<string | null>(null);
-  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
+  const [selectedSemester, setSelectedSemester] = useState<string | null>(null);
+  const [selectedCourseCode, setSelectedCourseCode] = useState<string | null>(null);
   const [isReadingListOpen, setIsReadingListOpen] = useState(false);
   
   useEffect(() => {
@@ -34,23 +34,23 @@ export default function Materials() {
   }, [setSemesters, semesters, initialSemesters]);
 
   const displaySemesters = isClient ? semesters : initialSemesters;
-  const selectedSemester = displaySemesters.find(sem => sem.id === selectedSemesterId);
-  const selectedCourse = selectedSemester?.courses.find(course => course.id === selectedCourseId);
+  const selectedSemesterData = displaySemesters.find(sem => sem.name === selectedSemester);
+  const selectedCourse = selectedSemesterData?.courses.find(course => course.code === selectedCourseCode);
 
   // Reset course selection when semester changes
   useEffect(() => {
-    setSelectedCourseId(null);
-  }, [selectedSemesterId]);
+    setSelectedCourseCode(null);
+  }, [selectedSemester]);
 
   // Add this helper function inside the component
-  const isInReadingList = (materialId: string) => {
-    return readingList.some(item => item.id === materialId);
+  const isInReadingList = (materialUrl: string) => {
+    return readingList.some(item => item.url === materialUrl);
   };
 
   const handleMaterialToggle = (material: Material, e: React.MouseEvent) => {
     e.preventDefault();
-    if (isInReadingList(material.id)) {
-      removeFromReadingList(material.id);
+    if (isInReadingList(material.url)) {
+      removeFromReadingList(material.url);
     } else {
       addToReadingList(material);
     }
@@ -97,12 +97,12 @@ export default function Materials() {
             <div className="overflow-hidden">
               <div className={`mt-4 space-y-2 ${isReadingListOpen ? 'opacity-100' : 'opacity-0'} transition-opacity duration-150`}>
                 {readingList.map((material) => (
-                  <div key={material.id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-gray-50 dark:bg-gray-700 p-2 sm:p-3 rounded">
+                  <div key={material.url} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-gray-50 dark:bg-gray-700 p-2 sm:p-3 rounded">
                     <span className="text-gray-800 dark:text-gray-200 text-sm sm:text-base">{material.title}</span>
                     <button
                       onClick={(e) => {
                         e.preventDefault();
-                        removeFromReadingList(material.id);
+                        removeFromReadingList(material.url);
                       }}
                       className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-sm sm:text-base"
                     >
@@ -129,10 +129,10 @@ export default function Materials() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {displaySemesters.map((semester) => (
               <button
-                key={semester.id}
-                onClick={() => setSelectedSemesterId(semester.id === selectedSemesterId ? null : semester.id)}
+                key={semester.name}
+                onClick={() => setSelectedSemester(semester.name === selectedSemester ? null : semester.name)}
                 className={`p-3 rounded-lg text-left transition-all duration-150 ${
-                  semester.id === selectedSemesterId
+                  semester.name === selectedSemester
                     ? 'bg-indigo-100 dark:bg-indigo-900 ring-2 ring-indigo-500 dark:ring-indigo-400'
                     : 'bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'
                 }`}
@@ -149,30 +149,30 @@ export default function Materials() {
         </div>
 
         {/* Course Selection */}
-        <div className={`grid transition-[grid-template-rows] duration-150 ease-in-out ${selectedSemester ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+        <div className={`grid transition-[grid-template-rows] duration-150 ease-in-out ${selectedSemesterData ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
           <div className="overflow-hidden">
-            {selectedSemester && (
+            {selectedSemesterData && (
               <div className="mb-6 sm:mb-8">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2">
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                    Courses for {selectedSemester.name}
+                    Courses for {selectedSemesterData.name}
                   </h2>
                   <button
-                    onClick={() => setSelectedSemesterId(null)}
+                    onClick={() => setSelectedSemester(null)}
                     className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                   >
                     Change Semester
                   </button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 px-0.5">
-                  {selectedSemester.courses.map((course, index) => (
+                  {selectedSemesterData.courses.map((course) => (
                     <button
-                      key={course.id}
-                      onClick={() => setSelectedCourseId(
-                        course.id === selectedCourseId ? null : course.id
+                      key={course.code}
+                      onClick={() => setSelectedCourseCode(
+                        course.code === selectedCourseCode ? null : course.code
                       )}
                       className={`p-3 rounded-lg text-left transition-all duration-150 overflow-hidden
-                        ${course.id === selectedCourseId
+                        ${course.code === selectedCourseCode
                           ? 'bg-white dark:bg-gray-800 shadow-md hover:shadow-lg ring-2 ring-indigo-500 dark:ring-indigo-400'
                           : 'bg-white dark:bg-gray-800 shadow-sm hover:shadow hover:bg-gray-50 dark:hover:bg-gray-700'
                         }`}
@@ -181,7 +181,7 @@ export default function Materials() {
                         {course.name}
                       </h3>
                       <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        {course.units.length} units
+                        {course.code} • {course.units.length} units
                       </p>
                     </button>
                   ))}
@@ -200,18 +200,18 @@ export default function Materials() {
                   {selectedCourse.name}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {selectedSemester?.name}
+                  {selectedCourse.code} • {selectedSemesterData?.name}
                 </p>
                 
                 <div className="space-y-4">
                   {selectedCourse.units.map((unit) => (
-                    <div key={unit.id} className="border-t border-gray-200 dark:border-gray-700 pt-3">
+                    <div key={`${selectedCourse.code}_${unit.name}`} className="border-t border-gray-200 dark:border-gray-700 pt-3">
                       <h3 className="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">
                         {unit.name}
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {unit.materials.map((material) => (
-                          <div key={material.id} 
+                          <div key={material.url} 
                             className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 
                               bg-gray-50 dark:bg-gray-700 p-2 sm:p-3 rounded"
                           >
@@ -226,12 +226,12 @@ export default function Materials() {
                             <button
                               onClick={(e) => handleMaterialToggle(material, e)}
                               className={`w-full sm:w-auto px-2 py-1 text-sm font-medium rounded transition-colors duration-150
-                                ${isInReadingList(material.id)
+                                ${isInReadingList(material.url)
                                   ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-800'
                                   : 'bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-800'
                                 }`}
                             >
-                              {isInReadingList(material.id) ? 'Remove from List' : 'Add to List'}
+                              {isInReadingList(material.url) ? 'Remove from List' : 'Add to List'}
                             </button>
                           </div>
                         ))}

@@ -2,26 +2,21 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 export type Material = {
-  id: string;
   type: 'slides' | 'notes';
   title: string;
   url: string;
-  courseId: string;
-  unitId: string;
 };
 
 type Course = {
-  id: string;
+  code: string;
   name: string;
   units: {
-    id: string;
     name: string;
     materials: Material[];
   }[];
 };
 
 type Semester = {
-  id: string;
   name: string;
   courses: Course[];
 };
@@ -30,7 +25,7 @@ interface StudyStore {
   readingList: Material[];
   semesters: Semester[];
   addToReadingList: (material: Material) => void;
-  removeFromReadingList: (materialId: string) => void;
+  removeFromReadingList: (materialUrl: string) => void;
   setSemesters: (semesters: Semester[]) => void;
 }
 
@@ -41,14 +36,14 @@ export const useStudyStore = create<StudyStore>()(
       semesters: [],
       addToReadingList: (material) =>
         set((state) => {
-          if (!state.readingList.some(m => m.id === material.id)) {
+          if (!state.readingList.some(m => m.url === material.url)) {
             return { readingList: [...state.readingList, material] };
           }
           return state;
         }),
-      removeFromReadingList: (materialId) =>
+      removeFromReadingList: (materialUrl) =>
         set((state) => ({
-          readingList: state.readingList.filter((m) => m.id !== materialId),
+          readingList: state.readingList.filter((m) => m.url !== materialUrl),
         })),
       setSemesters: (semesters) => set({ semesters }),
     }),
